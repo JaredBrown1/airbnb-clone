@@ -1,8 +1,6 @@
 'use client'
 
-import { Listing, Reservation } from '@prisma/client'
-
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 
 import { useRouter } from 'next/navigation';
 import useCountries from '@/app/hooks/useCountries';
@@ -14,7 +12,7 @@ import Button from '../Button';
 
 interface ListingCardProps {
     data: SafeListing;
-    reservation?: Reservation;
+    reservation?: SafeReservation;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
@@ -47,7 +45,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             onAction?.(actionId)
         }, [onAction, actionId, disabled] )
 
-        const price = useMemo(() => {
+    const price = useMemo(() => {
             if (reservation) {
                 return reservation.totalPrice
             }
@@ -55,16 +53,16 @@ const ListingCard: React.FC<ListingCardProps> = ({
             return data.price
         }, [reservation, data.price])
 
-        const reservationDate = useMemo(() => {
+    const reservationDate = useMemo(() => {
             if (!reservation) {
                 return null;
             }
 
-            const start = new Date(reservation.startDate);
-            const end = new Date(reservation.endDate)
+        const start = new Date(reservation.startDate);
+        const end = new Date(reservation.endDate)
 
-            return `${format(start, 'PP')} - ${format(end, 'PP')}`
-        }, [reservation])
+        return `${format(start, 'PP')} - ${format(end, 'PP')}`
+    }, [reservation])
 
     return ( 
         <div onClick={() => router.push(`/listings/${data.id}`)} className='col-span-1 cursor-pointer group'>
