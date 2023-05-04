@@ -15,7 +15,6 @@ import Heading from '../Heading';
 import Input from '../inputs/Input';
 import Button from '../Button';
 import { signIn } from 'next-auth/react';
-import LoginModal from './LoginModal';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
