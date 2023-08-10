@@ -37,7 +37,3 @@ Host your own property by selecting 'Airbnb your home'
 - Prisma
 - axios
 - leaflet
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
